@@ -1,3 +1,4 @@
+import { Link } from '@tanstack/react-router';
 import Button from './UI/Button';
 import { IconEdit, IconBackspace } from '@tabler/icons-react';
 
@@ -39,16 +40,20 @@ export default function PantryItem({ pantryItems }: Props) {
                 {item.expiry_date}
               </h4>
             </div>
-            <div className="flex gap-2">
-              <Button type="success">
-                Update{' '}
-                <span>
-                  <IconEdit />
-                </span>
-              </Button>
-              <Button type="danger">
-                Delete <IconBackspace />
-              </Button>
+            <div className=" grid grid-cols-2">
+              <Link to={`/${item.id}`}>
+                <Button type="success">
+                  Update{' '}
+                  <span>
+                    <IconEdit />
+                  </span>
+                </Button>
+              </Link>
+              <Link to={`/`}>
+                <Button type="danger">
+                  Delete <IconBackspace />
+                </Button>
+              </Link>
             </div>
           </div>
         ))}
