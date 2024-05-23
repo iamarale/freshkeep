@@ -18,28 +18,33 @@ export default function App() {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    getStock();
+    getAllPantry();
   }, []);
 
-  async function getStock() {
-    const { data, error } = await Supabase.from('pantry_items').select();
+  async function getAllPantry() {
+    //
+    try {
+      const { data, error } = await Supabase.from('pantry_items').select();
 
-    if (error) {
-      setErrorMessage(`There was an error getting data from supabase ${error}`);
+      if (error) {
+        setErrorMessage(
+          `There was an error getting data from Supabase: ${error.message}`
+        );
+        setError(true);
+      } else {
+        setPantryItems(data || []);
+        setError(false);
+        setErrorMessage('');
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      setErrorMessage('An unexpected error occurred while fetching data.');
       setError(true);
-      return;
-    }
-
-    if (data) {
-      setPantryItems(data);
-      setErrorMessage('');
-      setError(false);
     }
   }
 
   return (
     <main className="grid grid-cols-1 gap-2 md:grid-cols-3 ">
-      <h1>hell {errorMessage}</h1>
       {error ? (
         <h1>{errorMessage}</h1>
       ) : (
