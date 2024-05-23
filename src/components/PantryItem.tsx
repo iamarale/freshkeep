@@ -1,6 +1,21 @@
 import Button from './UI/Button';
+import { IconEdit, IconBackspace } from '@tabler/icons-react';
 
-export default function PantryItem({ pantryItems }) {
+interface PantryItem {
+  id: number;
+  name: string;
+  category: string;
+  quantity: number;
+  unit: string;
+  expiry_date: string; // Assuming expiry_date is a string for display
+  notes: string;
+}
+
+interface Props {
+  pantryItems: PantryItem[];
+}
+
+export default function PantryItem({ pantryItems }: Props) {
   return (
     <>
       {pantryItems &&
@@ -25,8 +40,15 @@ export default function PantryItem({ pantryItems }) {
               </h4>
             </div>
             <div className="flex gap-2">
-              <Button>Update</Button>
-              <Button>Delete</Button>
+              <Button type="success">
+                Update{' '}
+                <span>
+                  <IconEdit />
+                </span>
+              </Button>
+              <Button type="danger">
+                Delete <IconBackspace />
+              </Button>
             </div>
           </div>
         ))}
