@@ -1,20 +1,28 @@
-import { Link, createFileRoute, useNavigate } from '@tanstack/react-router';
-import { useState } from 'react';
+import { Link, createFileRoute } from '@tanstack/react-router';
 import FormFields from '../components/FormFields';
 import Button from '../components/UI/Button';
 import { Supabase } from '../config/supabaseClient';
+import { usePantryItemState } from '../hooks/usePantryItemState';
 
 export const Route = createFileRoute('/create')({
   component: CreatePantryItem,
 });
 
 function CreatePantryItem() {
-  const [name, setName] = useState('');
-  const [notes, setNotes] = useState('');
-  const [category, setCategory] = useState('');
-  const [quantity, setQuantity] = useState('');
-  const [unit, setUnit] = useState('');
-  const [expiry_date, setExpiryDate] = useState('');
+  const {
+    name,
+    setName,
+    notes,
+    setNotes,
+    category,
+    setCategory,
+    quantity,
+    setQuantity,
+    unit,
+    setUnit,
+    expiry_date,
+    setExpiryDate,
+  } = usePantryItemState();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -35,8 +43,9 @@ function CreatePantryItem() {
 
   console.log(name, quantity, category, notes, unit, expiry_date);
   return (
-    <form onSubmit={handleSubmit}>
-      <fieldset className="mb-2 mt-6 flex flex-col gap-2">
+    <form className="flex flex-col items-center" onSubmit={handleSubmit}>
+      <h1 className="text-2xl font-bold ">Create a Pantry Item</h1>
+      <fieldset className="mb-2 mt-3 flex flex-col gap-2">
         <FormFields
           labelName="Name"
           inputId="name"
