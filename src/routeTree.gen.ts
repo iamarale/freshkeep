@@ -13,7 +13,6 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as DeleteImport } from './routes/delete'
 import { Route as CreateImport } from './routes/create'
 import { Route as PantryIdImport } from './routes/pantry/$id'
 
@@ -22,11 +21,6 @@ import { Route as PantryIdImport } from './routes/pantry/$id'
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
-
-const DeleteRoute = DeleteImport.update({
-  path: '/delete',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const CreateRoute = CreateImport.update({
   path: '/create',
@@ -61,13 +55,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateImport
       parentRoute: typeof rootRoute
     }
-    '/delete': {
-      id: '/delete'
-      path: '/delete'
-      fullPath: '/delete'
-      preLoaderRoute: typeof DeleteImport
-      parentRoute: typeof rootRoute
-    }
     '/pantry/$id': {
       id: '/pantry/$id'
       path: '/pantry/$id'
@@ -83,7 +70,6 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
   CreateRoute,
-  DeleteRoute,
   PantryIdRoute,
 })
 
