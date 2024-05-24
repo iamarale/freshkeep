@@ -23,6 +23,10 @@ A simple and efficient pantry management application built with React, TanStack 
 - **Supabase**: Backend providing database, authentication, and storage
 - **Tailwind CSS**: CSS framework for styling, main styling sheet
 
+#### Versions
+
+- Version1.0 - basic functionality and crud functions almost complete
+
 ### Clone the Repository
 
 ```bash
