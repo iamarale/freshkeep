@@ -22,7 +22,6 @@ export default function App() {
   }, []);
 
   async function getAllPantry() {
-    //
     try {
       const { data, error } = await Supabase.from('pantry_items').select();
 

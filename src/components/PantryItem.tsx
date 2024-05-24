@@ -41,7 +41,7 @@ export default function PantryItem({ pantryItems }: Props) {
               </h4>
             </div>
             <div className=" grid grid-cols-2">
-              <Link to={`/${item.id}`}>
+              <Link to={`/pantry/${item.id}`}>
                 <Button type="success">
                   Update{' '}
                   <span>
@@ -49,7 +49,7 @@ export default function PantryItem({ pantryItems }: Props) {
                   </span>
                 </Button>
               </Link>
-              <Link to={`/`}>
+              <Link to={``}>
                 <Button type="danger">
                   Delete <IconBackspace />
                 </Button>

@@ -13,13 +13,20 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as DeleteImport } from './routes/delete'
 import { Route as CreateImport } from './routes/create'
+import { Route as PantryIdImport } from './routes/pantry/$id'
 
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const DeleteRoute = DeleteImport.update({
+  path: '/delete',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const CreateRoute = CreateImport.update({
   path: '/create',
@@ -30,6 +37,11 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const PantryIdRoute = PantryIdImport.update({
+  path: '/pantry/$id',
+  getParentRoute: () => rootRoute,
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -49,11 +61,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CreateImport
       parentRoute: typeof rootRoute
     }
+    '/delete': {
+      id: '/delete'
+      path: '/delete'
+      fullPath: '/delete'
+      preLoaderRoute: typeof DeleteImport
+      parentRoute: typeof rootRoute
+    }
+    '/pantry/$id': {
+      id: '/pantry/$id'
+      path: '/pantry/$id'
+      fullPath: '/pantry/$id'
+      preLoaderRoute: typeof PantryIdImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({ IndexLazyRoute, CreateRoute })
+export const routeTree = rootRoute.addChildren({
+  IndexLazyRoute,
+  CreateRoute,
+  DeleteRoute,
+  PantryIdRoute,
+})
 
 /* prettier-ignore-end */
