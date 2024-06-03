@@ -14,7 +14,7 @@ export default function FormFields({
   setChange,
 }: FieldTypes) {
   return (
-    <div className="flex flex-col">
+    <div className="`flex-col flex">
       <label htmlFor={inputId}>{labelName}</label>
       <input
         className="rounded border-[1px] bg-neutral-700 px-2 py-1 text-neutral-200"

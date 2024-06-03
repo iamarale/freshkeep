@@ -10,6 +10,7 @@ interface ButtonProps {
 
 export default function Button({
   type = 'default',
+  onClick,
   children,
   icon,
 }: ButtonProps) {
@@ -28,6 +29,7 @@ export default function Button({
 
   return (
     <button
+      onClick={onClick}
       className={`${className} flex gap-2 rounded px-3 py-1 text-neutral-50 duration-200 hover:opacity-60 md:flex-1 md:justify-between`}
     >
       {icon && <span>{icon}</span>}

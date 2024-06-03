@@ -68,7 +68,6 @@ function PantryUpdate() {
     if (error) {
       console.error('Error updating item:', error);
     } else {
-      useNavigate('/');
       console.log('Item updated successfully:', data);
     }
   }
@@ -81,7 +80,7 @@ function PantryUpdate() {
 
   return (
     <div>
-      <h1>Hello {id}</h1>
+      <h1>Updating {id}</h1>
       <form onSubmit={updatePantryItem}>
         <fieldset>
           <FormFields
