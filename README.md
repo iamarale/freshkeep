@@ -2,6 +2,10 @@
 
 A simple and efficient pantry management application built with React, TanStack Router for routing, Supabase for database management, and Tailwind CSS for styling.
 
+### purpose
+
+I want to get better at creating crud applications so I used supabase as my DB and created data, updated them, and also deleted them.
+
 ## Table of Contents
 
 - [Features](#features)
